@@ -185,6 +185,32 @@ NSString *kImageTestKey = @"TestImageKey";
     expect(path).notTo.beNil;
 }
 
+- (void)testStoredImagePaths {
+    XCTestExpectation *expectation = [self expectationWithDescription:@"Stored Image Paths"];
+    
+    NSLog(@"started test");
+    
+    [self clearAllCaches];
+    
+    UIImage *image = [self imageForTesting];
+    UIImage *anotherImage = [self imageForTesting];
+    
+    [self.sharedImageCache storeImage:image forKey:@"hello"];
+    [self.sharedImageCache storeImage:anotherImage forKey:@"hello again"];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        NSArray *storedImagePaths = [self.sharedImageCache storedImagePaths];
+        
+        NSLog(@"stored image paths: %@", storedImagePaths);
+        
+        expect(storedImagePaths).notTo.beNil;
+        expect([storedImagePaths count]).to.equal(2);
+        [expectation fulfill];
+    });
+    
+    [self waitForExpectationsWithTimeout:2 handler:nil];
+}
+
 #pragma mark Helper methods
 
 - (void)clearAllCaches{
