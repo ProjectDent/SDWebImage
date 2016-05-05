@@ -134,6 +134,12 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
  */
 - (void)storeImage:(UIImage *)image recalculateFromImage:(BOOL)recalculate imageData:(NSData *)imageData forKey:(NSString *)key toDisk:(BOOL)toDisk;
 
+
+/**
+ * Returns paths of all stored images in the cache
+ */
+- (NSArray *)storedImagePaths;
+
 /**
  * Query the disk cache asynchronously.
  *

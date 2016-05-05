@@ -378,6 +378,13 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return SDScaledImageForKey(key, image);
 }
 
+- (NSArray *)storedImagePaths {
+    NSError *error;
+    NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.diskCachePath error:&error];
+    
+    return contents;
+}
+
 - (NSOperation *)queryDiskCacheForKey:(NSString *)key done:(SDWebImageQueryCompletedBlock)doneBlock {
     if (!doneBlock) {
         return nil;
