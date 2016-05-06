@@ -168,6 +168,10 @@ typedef void(^SDWebImageCalculateSizeBlock)(NSUInteger fileCount, NSUInteger tot
  */
 - (void)removeImageForKey:(NSString *)key;
 
+/**
+ * Cached file name for a given key
+ */
+- (NSString *)cachedFileNameForKey:(NSString *)key;
 
 /**
  * Remove the image from memory and disk cache asynchronously

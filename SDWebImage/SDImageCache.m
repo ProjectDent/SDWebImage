@@ -172,8 +172,6 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     return [self cachePathForKey:key inPath:self.diskCachePath];
 }
 
-#pragma mark SDImageCache (private)
-
 - (NSString *)cachedFileNameForKey:(NSString *)key {
     const char *str = [key UTF8String];
     if (str == NULL) {
