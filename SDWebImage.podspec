@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'SDWebImage'
-  s.version = '3.8'
+  s.version = '3.8.1'
   s.ios.deployment_target = '5.0'
   s.tvos.deployment_target = '9.0'
   s.license = 'MIT'
