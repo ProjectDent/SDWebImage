@@ -380,8 +380,16 @@ FOUNDATION_STATIC_INLINE NSUInteger SDCacheCostForImage(UIImage *image) {
     dispatch_async(self.ioQueue, ^{
         NSError *error;
         NSArray *contents = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:self.diskCachePath error:&error];
+        
+        NSMutableArray *storedImagePaths = [NSMutableArray new];
+        
+        for (NSString *fileName in contents) {
+            NSString *fullPath = [[NSString alloc] initWithFormat: @"%@/%@", self.diskCachePath, fileName];
+            [storedImagePaths addObject:fullPath];
+        }
+        
         dispatch_async(dispatch_get_main_queue(), ^{
-            completion(contents);
+            completion(storedImagePaths);
         });
     });
 }
